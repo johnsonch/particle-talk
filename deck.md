@@ -51,6 +51,69 @@ autoscale: true
 # Let's try it out
 
 ---
+## Tinker Demo
+### Setting up the Photon
+
+* This is also how you connect to a new WI-FI, just make sure you don't skip ahead and connect to the devices network before hitting ready on this screen.
+
+![fit right](./images/IMG_0357.PNG)
+
+^ The smart phone app guides you very well
+
+---
+## Tinker Demo
+### Setting up the Photon
+
+* The device emits it's own wireless network for setup.
+
+![fit right](./images/IMG_0358.PNG)
+
+---
+![fit](./images/IMG_0359.PNG)
+
+![fit](./images/IMG_0360.PNG)
+
+![fit](./images/IMG_0361.PNG)
+
+---
+## Tinker Demo
+### Setting up the Photon
+
+* They give you funky names, you can however rename it if you want
+
+![fit right](./images/IMG_0362.PNG)
+
+---
+## Tinker Demo
+### Playing with your device
+
+* Tinker mode gives you a gives you a virtual interface to your board.
+* We have two lites already attached to our bread board, let's light up the Red one
+
+![fit right](./images/IMG_0363_0364.PNG)
+
+
+---
+## Tinker Demo
+### Playing with your device
+
+* We blinked a light over the internet!
+
+![fit right](./images/IMG_0365.JPG)
+
+---
+# That's cool but...
+## I can't just watch the build status and click a button
+
+---
+# To the cloud
+
+![](./images/pexels-photo-68564.jpeg)
+
+---
+
+
+---
 # Issues I ran into
 * My lack of experience physically working with electronics
 *
