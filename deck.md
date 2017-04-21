@@ -111,7 +111,71 @@ autoscale: true
 ![](./images/pexels-photo-68564.jpeg)
 
 ---
+# build.particle.io
 
+* Online editor
+* JavaScript based DSL
+* [https://build.particle.io](https://build.particle.io)
+
+![fit right](./images/2017-04-21 at 3.26 PM.png)
+
+---
+# Sample App
+
+* They have a few, we'll try the `BLINK AN LED` app
+
+![fit right](./images/2017-04-21 at 3.27 PM.png)
+
+---
+# Sample App
+
+* To send it to our Photon we just need to `flash` the device
+* Well it is sending to our device let's look at the code
+
+![fit right](./images/2017-04-21 at 3.28 PM.png)
+
+---
+
+```javascript
+int led1 = D0;
+int led2 = D7;
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+}
+
+// Next we have the loop function, the other essential part of a microcontroller program.
+// This routine gets repeated over and over, as quickly as possible and as many times as possible,
+// after the setup function is called.
+// Note: Code that blocks for too long (like more than 5 seconds), can make weird things happen
+// (like dropping the network connection).  The built-in delay function shown below safely
+// interleaves required background activity, so arbitrarily long delays can safely be done if you need them.
+
+void loop() {
+  // To blink the LED, first we'll turn it on...
+  digitalWrite(led1, HIGH);
+  digitalWrite(led2, HIGH);
+
+  // We'll leave it on for 1 second...
+  delay(1000);
+
+  // Then we'll turn it off...
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+
+  // Wait 1 second...
+  delay(1000);
+
+  // And repeat!
+}
+
+```
+[Direct Link](./code_samples/blink-an-led.ino)
+
+---
+
+![](./images/IMG_0368.MOV)
 
 ---
 # Issues I ran into
