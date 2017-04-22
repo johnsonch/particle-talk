@@ -267,7 +267,7 @@ $ACCESS_TOKEN="REDACTED"
 $DEVICE_ID="REDACTED"
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" \
--H "Cache-Control: no-cache" -H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" \
+-H "Cache-Control: no-cache"  \
 -d "access_token=${ACCESS_TOKEN}&arg=green" "https://api.particle.io/v1/devices/${DEVICE_ID}/led"
 ```
 
@@ -304,7 +304,7 @@ Failure
 #!/bin/bash
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Control: no-cache" \
--H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" -d "access_token=${ACCESS_TOKEN}&arg=red" \
+-d "access_token=${ACCESS_TOKEN}&arg=red" \
 "https://api.particle.io/v1/devices/${DEVICE_ID}/led"
 ```
 
@@ -314,7 +314,7 @@ Success
 #!/bin/bash
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Control: no-cache" \
--H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" -d "access_token=${ACCESS_TOKEN}&arg=green" \
+-d "access_token=${ACCESS_TOKEN}&arg=green" \
 "https://api.particle.io/v1/devices/${DEVICE_ID}/led"
 ```
 
