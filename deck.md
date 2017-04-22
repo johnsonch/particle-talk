@@ -9,9 +9,18 @@ autoscale: true
 
 ### Chris Johnson
 ### @johnsonch => most places on the internet
+### Senior Development Manager @ Rosh Review
 
 ---
-# Disclaimer
+# Disclaimer/Talk Rules
+
+* These are based on my personal experience, YMMV
+* I thought this was something cool to talk about, I have not made anything 'production' ready
+* If you know more than me or can correct me, speak up.
+* If you have questions please ask!
+* If you want to argue about something, buy me a beer later.
+
+![](./images/sign-slippery-wet-caution.jpg)
 
 ---
 ## IoT LOL WUT?
@@ -135,6 +144,7 @@ autoscale: true
 ![fit right](./images/2017-04-21 at 3.28 PM.png)
 
 ---
+# blink-an-led.ino
 
 ```javascript
 int led1 = D0;
@@ -145,29 +155,16 @@ void setup() {
   pinMode(led2, OUTPUT);
 }
 
-// Next we have the loop function, the other essential part of a microcontroller program.
-// This routine gets repeated over and over, as quickly as possible and as many times as possible,
-// after the setup function is called.
-// Note: Code that blocks for too long (like more than 5 seconds), can make weird things happen
-// (like dropping the network connection).  The built-in delay function shown below safely
-// interleaves required background activity, so arbitrarily long delays can safely be done if you need them.
-
 void loop() {
-  // To blink the LED, first we'll turn it on...
   digitalWrite(led1, HIGH);
   digitalWrite(led2, HIGH);
 
-  // We'll leave it on for 1 second...
   delay(1000);
 
-  // Then we'll turn it off...
   digitalWrite(led1, LOW);
   digitalWrite(led2, LOW);
 
-  // Wait 1 second...
   delay(1000);
-
-  // And repeat!
 }
 
 ```
@@ -176,6 +173,130 @@ void loop() {
 ---
 
 ![](./images/IMG_0368.MOV)
+
+---
+# Profit
+
+---
+# Now let's build something we can control
+
+![](./images/man-person-hand-party.jpg)
+
+---
+# Creating a new app
+
+* From the cloud IDE choose 'CREATE NEW APP'
+* Call it something like `travis-ci-blink`
+* Then add the code from [travis-ci-blink.ino](./code_samples/travis-ci-blink.ino)
+* Then flash it to your Photon
+
+---
+# Let's look at the code
+
+```javascript
+SYSTEM_MODE(AUTOMATIC);
+
+int red = D0;
+int green = D1;
+
+void setup()
+{
+
+   pinMode(red, OUTPUT);
+   pinMode(green, OUTPUT);
+   Particle.function("led",ledToggle);
+
+   digitalWrite(red, LOW);
+   digitalWrite(green, LOW);
+
+}
+
+
+int ledToggle(String command) {
+  if (command=="red") {
+      digitalWrite(red,HIGH);
+      digitalWrite(green,LOW);
+      return 1;
+  }
+  else if (command=="green") {
+      digitalWrite(red,LOW);
+      digitalWrite(green,HIGH);
+      return 0;
+  }
+  else {
+      return -1;
+  }
+}
+```
+
+---
+# Now to interact with it.
+
+* Using the [Particle API](https://docs.particle.io/reference/api/)
+
+---
+# curl request to API
+
+```bash
+#!/bin/bash
+
+$ACCESS_TOKEN="1324123"
+$DEVICE_ID="asfdasdf"
+
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+-H "Cache-Control: no-cache" -H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" \
+-d "access_token=${ACCESS_TOKEN}&arg=green" "https://api.particle.io/v1/devices/${DEVICE_ID}/led"
+```
+
+---
+# On to Travis
+
+* Create a new build process on https://travis-ci.org
+* Then update the `.travis.yml` to contain blocks to call `curl` requests for success and failures.
+
+---
+# Sample `.travis.yml` for a Rails project
+
+```yaml
+language: ruby
+cache: bundler
+rvm:
+  - 2.3.0
+script:
+  - bundle install --without production
+  - bundle exec rails db:migrate
+  - bundle exec rails test
+after_success:
+  - ./ci/success
+after_failure:
+  - ./ci/failure
+```
+
+---
+# ci scripts
+
+Failure
+
+```bash
+#!/bin/bash
+
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Control: no-cache" \
+-H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" -d "access_token=${ACCESS_TOKEN}&arg=red" \
+"https://api.particle.io/v1/devices/${DEVICE_ID}/led"
+```
+
+Success
+
+```bash
+#!/bin/bash
+
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Control: no-cache" \
+-H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" -d "access_token=${ACCESS_TOKEN}&arg=green" \
+"https://api.particle.io/v1/devices/${DEVICE_ID}/led"
+```
+
+---
+# Let's see this in action!
 
 ---
 # Issues I ran into
