@@ -1,5 +1,6 @@
 footer:@johnsonch :: Chris Johnson :: Starting with Particle.io
 autoscale: true
+theme: Simple, 2
 
 # Getting Started with Photon
 ## Blinking lights for fun
@@ -9,7 +10,7 @@ autoscale: true
 
 ### Chris Johnson
 ### @johnsonch => most places on the internet
-### Senior Development Manager @ Rosh Review
+### Dev Manager @ Rosh Review
 
 ---
 # Disclaimer/Talk Rules
@@ -22,14 +23,31 @@ autoscale: true
 
 ![](./images/sign-slippery-wet-caution.jpg)
 
+[.build-lists: true]
+
+---
+# Why am I giving this talk?
+
+^ This topic really interested me and I struggled a little bit getting started. I hope to inspire you and help you avoid some frustration I had.
+
 ---
 ## IoT LOL WUT?
+
+> The Internet of things (IoT) is the inter-networking of physical devices, vehicles (also referred to as "connected devices" and "smart devices"), buildings, and other items—embedded with electronics, software, sensors, actuators, and network connectivity that enable these objects to collect and exchange data. - Wikipedia
 
 ---
 # What is a Photon
 
+> A tiny, reprogrammable Wi-Fi development kit for prototyping and scaling your Internet of Things product
+
+![](./images/2017-04-21 at 9.13 PM.png)
+
 ---
 # Who is Particle
+
+> Particle is a scalable, reliable and secure Internet of Things device platform that enables businesses to quickly and easily build, connect and manage their connected solutions.
+
+![fit](./images/particle-vertical.png)
 
 ---
 # Where can I get stuff?
@@ -233,6 +251,9 @@ int ledToggle(String command) {
 # Now to interact with it.
 
 * Using the [Particle API](https://docs.particle.io/reference/api/)
+* You'll need your Device ID and Access Token
+
+![right](./images/device_id_and_access_token.png)
 
 ---
 # curl request to API
@@ -240,8 +261,8 @@ int ledToggle(String command) {
 ```bash
 #!/bin/bash
 
-$ACCESS_TOKEN="1324123"
-$DEVICE_ID="asfdasdf"
+$ACCESS_TOKEN="REDACTED"
+$DEVICE_ID="REDACTED"
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" \
 -H "Cache-Control: no-cache" -H "Postman-Token: f7386639-84cd-90c7-ddca-6d34f636892c" \
@@ -301,4 +322,12 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Cont
 ---
 # Issues I ran into
 * My lack of experience physically working with electronics
-*
+* Not reading directions!
+* Setup and teardown caused me not to get excited when it was "Hack Time"
+
+[.build-lists: true]
+
+---
+# Want to find out more?
+
+* Slides and code samples are on Github: [https://github.com/johnsonch/particle-talk](https://github.com/johnsonch/particle-talk)
