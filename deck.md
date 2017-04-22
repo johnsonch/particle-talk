@@ -211,6 +211,8 @@ void loop() {
 ---
 # Let's look at the code
 
+---
+
 ```javascript
 SYSTEM_MODE(AUTOMATIC);
 
